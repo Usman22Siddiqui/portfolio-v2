@@ -279,18 +279,17 @@ function initTerminalTyping() {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   CUSTOM CURSOR ENGINE
+   CUSTOM CURSOR ENGINE (AMBIENT GOLDEN RING FOLLOWER)
    ═══════════════════════════════════════════════════════════ */
 function initCustomCursor() {
   const cursor = document.getElementById('cursor');
   if (!cursor) return;
 
-  const dot = cursor.querySelector('.cursor__dot');
   const ring = cursor.querySelector('.cursor__ring');
   const label = cursor.querySelector('.cursor__label');
-  if (!dot || !ring) return;
+  if (!ring) return;
 
-  if (window.innerWidth <= 768 && ('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
+  if (window.innerWidth <= 768) {
     cursor.style.display = 'none';
     return;
   }
@@ -299,9 +298,9 @@ function initCustomCursor() {
   let ringX = -100, ringY = -100;
   let isMoving = false;
 
-  function updatePosition(clientX, clientY) {
-    mouseX = clientX;
-    mouseY = clientY;
+  function updatePosition(e) {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
 
     if (!isMoving) {
       isMoving = true;
@@ -309,19 +308,10 @@ function initCustomCursor() {
       ringY = mouseY;
       document.body.classList.add('cursor-active');
     }
-
-    dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
   }
 
-  window.addEventListener('pointermove', (e) => {
-    if (e.pointerType === 'mouse' || e.pointerType === 'pen' || !e.pointerType) {
-      updatePosition(e.clientX, e.clientY);
-    }
-  }, { passive: true });
-
-  window.addEventListener('mousemove', (e) => {
-    updatePosition(e.clientX, e.clientY);
-  }, { passive: true });
+  window.addEventListener('pointermove', updatePosition, { passive: true });
+  window.addEventListener('mousemove', updatePosition, { passive: true });
 
   document.addEventListener('mouseleave', () => {
     document.body.classList.remove('cursor-active');
@@ -333,8 +323,8 @@ function initCustomCursor() {
 
   function renderRing() {
     if (isMoving) {
-      ringX += (mouseX - ringX) * 0.35;
-      ringY += (mouseY - ringY) * 0.35;
+      ringX += (mouseX - ringX) * 0.28;
+      ringY += (mouseY - ringY) * 0.28;
       ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
       if (label) {
         label.style.transform = `translate3d(${ringX}px, ${ringY + 24}px, 0) translateX(-50%)`;
@@ -345,22 +335,21 @@ function initCustomCursor() {
   requestAnimationFrame(renderRing);
 
   const hoverTargets = document.querySelectorAll('a, button, [data-cursor], .project-card, .btn, .domain');
-  const cursorLabel = cursor.querySelector('.cursor__label');
 
   hoverTargets.forEach(target => {
     target.addEventListener('mouseenter', () => {
       cursor.classList.add('cursor--hover');
       const labelText = target.getAttribute('data-cursor');
-      if (labelText && cursorLabel) {
-        cursorLabel.textContent = labelText;
-      } else if (cursorLabel) {
-        cursorLabel.textContent = target.tagName === 'A' || target.classList.contains('project-card') ? 'OPEN' : '';
+      if (labelText && label) {
+        label.textContent = labelText;
+      } else if (label) {
+        label.textContent = target.tagName === 'A' || target.classList.contains('project-card') ? 'OPEN' : '';
       }
     });
 
     target.addEventListener('mouseleave', () => {
       cursor.classList.remove('cursor--hover');
-      if (cursorLabel) cursorLabel.textContent = '';
+      if (label) label.textContent = '';
     });
   });
 }
