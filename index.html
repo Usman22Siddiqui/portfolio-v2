@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muhammad Usman Siddiqui — Software Engineer</title>
+  <meta name="description" content="Muhammad Usman Siddiqui is a Software Engineer focused on AI automation, DevOps, full-stack development, and backend systems.">
+  <meta name="author" content="Muhammad Usman Siddiqui">
+  <meta name="keywords" content="Software Engineer, Full Stack Developer, AI Automation, DevOps, Muhammad Usman Siddiqui, Portfolio, ClinicFlo AI">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Muhammad Usman Siddiqui — Software Engineer">
+  <meta property="og:description" content="Software Engineer focused on AI Automation, DevOps, Full-Stack Development, and Backend Systems.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="profile.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Muhammad Usman Siddiqui — Software Engineer">
+  <meta name="twitter:description" content="Software Engineer focused on AI Automation, DevOps, Full-Stack Development, and Backend Systems.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ═══════════════════ CANVAS 3D AMBIENT PARTICLES ═══════════════════ -->
+  <canvas id="ambient-canvas" class="ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- ═══════════════════ LOADING SCREEN ═══════════════════ -->
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader__content">
+      <div class="loader__brand">USMAN.SYS</div>
+      <div class="loader__lines">
+        <div class="loader__line">INITIALIZING PORTFOLIO<span class="loader__dots">...</span> <span class="loader__check">[OK]</span></div>
+        <div class="loader__line">LOADING PROJECTS<span class="loader__dots">...</span> <span class="loader__check">[OK]</span></div>
+        <div class="loader__line">LOADING EXPERIENCE<span class="loader__dots">...</span> <span class="loader__check">[OK]</span></div>
+        <div class="loader__line">CONNECTING TO GITHUB<span class="loader__dots">...</span> <span class="loader__check">[OK]</span></div>
+      </div>
+      <div class="loader__progress">
+        <div class="loader__bar"></div>
+      </div>
+      <div class="loader__status">SYSTEM ONLINE</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ CUSTOM CURSOR ═══════════════════ -->
+  <div id="cursor" class="custom-cursor" aria-hidden="true">
+    <div class="cursor__dot"></div>
+    <div class="cursor__ring"></div>
+    <span class="cursor__label"></span>
+  </div>
+
+  <!-- ═══════════════════ NAVIGATION ═══════════════════ -->
+  <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="#hero" class="navbar__brand" aria-label="Home">USMAN<span class="navbar__brand-dot">.</span>SYS</a>
+      <button id="nav-toggle" class="navbar__toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="navbar__toggle-bar"></span>
+        <span class="navbar__toggle-bar"></span>
+        <span class="navbar__toggle-bar"></span>
+      </button>
+      <ul id="nav-menu" class="navbar__menu">
+        <li><a href="#work" class="navbar__link" data-section="work">WORK</a></li>
+        <li><a href="#about" class="navbar__link" data-section="about">ABOUT</a></li>
+        <li><a href="#stack" class="navbar__link" data-section="stack">STACK</a></li>
+        <li><a href="#experience" class="navbar__link" data-section="experience">EXPERIENCE</a></li>
+        <li><a href="#contact" class="navbar__link" data-section="contact">CONTACT</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════════════ HERO ═══════════════════ -->
+    <section id="hero" class="hero">
+      <div class="hero__bg-image" aria-hidden="true">
+        <img src="hero-bg.jpg" alt="" loading="eager">
+      </div>
+      <div class="hero__content">
+        <div class="hero__left">
+          <div class="hero__eyebrow reveal" data-reveal>USMAN.SYS // ARCHITECTURE &amp; ENGINEERING</div>
+          <h1 class="hero__title reveal" data-reveal>
+            <span class="hero__title-line">SOFTWARE</span>
+            <span class="hero__title-line hero__title-line--accent">ENGINEER</span>
+          </h1>
+          <p class="hero__statement reveal" data-reveal>I build applications, automate workflows, and engineer the distributed systems behind them.</p>
+          <div class="hero__tags reveal" data-reveal>
+            <span>AI AUTOMATION</span>
+            <span class="hero__tag-sep">·</span>
+            <span>DEVOPS</span>
+            <span class="hero__tag-sep">·</span>
+            <span>FULL STACK</span>
+            <span class="hero__tag-sep">·</span>
+            <span>BACKEND</span>
+          </div>
+          <div class="hero__cta reveal" data-reveal>
+            <a href="#work" class="btn btn--primary">EXPLORE WORK <span class="btn__arrow">→</span></a>
+            <a href="https://github.com/Usman22Siddiqui" target="_blank" rel="noopener" class="btn btn--secondary">VIEW GITHUB <span class="btn__arrow">↗</span></a>
+          </div>
+        </div>
+        <div class="hero__right reveal" data-reveal>
+          <div class="hero__profile-wrapper">
+            <img src="profile.jpg" alt="Muhammad Usman Siddiqui" class="hero__profile-img" loading="eager">
+          </div>
+          <div class="hero__terminal">
+            <div class="terminal__header">
+              <span class="terminal__dot terminal__dot--red"></span>
+              <span class="terminal__dot terminal__dot--yellow"></span>
+              <span class="terminal__dot terminal__dot--green"></span>
+              <span class="terminal__title">USMAN@CONTROL-PANEL</span>
+            </div>
+            <div class="terminal__body">
+              <div class="terminal__line"><span class="terminal__prompt">$</span> <span class="terminal__cmd">whoami</span></div>
+              <div class="terminal__output">software-engineer // systems-architect</div>
+              <div class="terminal__line"><span class="terminal__prompt">$</span> <span class="terminal__cmd">focus</span></div>
+              <div class="terminal__output">
+                <span class="terminal__focus-item">&gt; AI Automation &amp; LLM Orchestration</span>
+                <span class="terminal__focus-item">&gt; DevOps Pipelines &amp; Kubernetes</span>
+                <span class="terminal__focus-item">&gt; Full Stack Distributed SaaS</span>
+                <span class="terminal__focus-item">&gt; High-Performance Backend Systems</span>
+              </div>
+              <div class="terminal__line"><span class="terminal__prompt">$</span> <span class="terminal__cmd">status</span></div>
+              <div class="terminal__status"><span class="terminal__status-dot"></span> <span class="terminal__status-text">SYSTEM ONLINE // READY TO BUILD</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ ENGINEERING STATEMENT ═══════════════════ -->
+    <section class="statement">
+      <div class="statement__bg-image" aria-hidden="true">
+        <img src="olive-bg.jpg" alt="" loading="lazy">
+      </div>
+      <div class="statement__inner">
+        <h2 class="statement__title reveal" data-reveal>
+          <span class="statement__line">I don't just write code.</span>
+          <span class="statement__line statement__line--accent">I turn ideas into working systems.</span>
+        </h2>
+        <div class="statement__flow reveal" data-reveal>
+          <span class="flow__step">CODE</span>
+          <span class="flow__arrow">↓</span>
+          <span class="flow__step">APPLICATIONS</span>
+          <span class="flow__arrow">↓</span>
+          <span class="flow__step">AUTOMATION</span>
+          <span class="flow__arrow">↓</span>
+          <span class="flow__step">INFRASTRUCTURE</span>
+          <span class="flow__arrow">↓</span>
+          <span class="flow__step flow__step--active">SYSTEMS</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ ENGINEERING DOMAINS ═══════════════════ -->
+    <section id="domains" class="domains">
+      <div class="domains__grid">
+        <div class="domain domain--olive reveal" data-reveal>
+          <span class="domain__number">01 // SPECIALIZATION</span>
+          <h3 class="domain__title">AI AUTOMATION</h3>
+          <p class="domain__desc">AI-assisted workflows, automated triage, API integrations, and intelligent data pipeline processing.</p>
+          <div class="domain__diagram">
+            <div class="diagram__step">INPUT INGESTION</div><div class="diagram__arrow">↓</div>
+            <div class="diagram__step">SECURE WEBHOOK</div><div class="diagram__arrow">↓</div>
+            <div class="diagram__step">AI INFERENCE</div><div class="diagram__arrow">↓</div>
+            <div class="diagram__step">DECISION ENGINE</div><div class="diagram__arrow">↓</div>
+            <div class="diagram__step diagram__step--active">AUTOMATION PIPELINE</div>
+          </div>
+        </div>
+        <div class="domain domain--cream reveal" data-reveal>
+          <span class="domain__number">02 // SPECIALIZATION</span>
+          <h3 class="domain__title">FULL STACK</h3>
+          <p class="domain__desc">Responsive client interfaces, RESTful microservices, RBAC authentication, and scalable databases.</p>
+          <div class="domain__diagram">
+            <div class="diagram__step">USER INTERFACE</div><div class="diagram__arrow">↓</div>
+            <div class="diagram__step">API GATEWAY</div><div class="diagram__arrow">↓</div>
+            <div class="diagram__step">BACKEND SERVICES</div><div class="diagram__arrow">↓</div>
+            <div class="diagram__step diagram__step--active">PERSISTENT DATABASE</div>
+          </div>
+        </div>
+        <div class="domain domain--forest reveal" data-reveal>
+          <span class="domain__number">03 // SPECIALIZATION</span>
+          <h3 class="domain__title">DEVOPS</h3>
+          <p class="domain__desc">Multi-stage containerization, CI/CD automation, Kubernetes deployment, and Prometheus observability.</p>
+          <div class="domain__diagram">
+            <div class="diagram__step">SOURCE REPOSITORY</div><div class="diagram__arrow">↓</div>
+            <div class="diagram__step">AUTOMATED CI/CD</div><div class="diagram__arrow">↓</div>
+            <div class="diagram__step">DOCKER CONTAINER</div><div class="diagram__arrow">↓</div>
+            <div class="diagram__step">KUBERNETES PODS</div><div class="diagram__arrow">↓</div>
+            <div class="diagram__step diagram__step--active">TELEMETRY &amp; METRICS</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ FLAGSHIP: CLINICFLO AI ═══════════════════ -->
+    <section id="work" class="flagship clinicflo">
+      <div class="flagship__bg-image" aria-hidden="true">
+        <img src="dark-bg.jpg" alt="" loading="lazy">
+      </div>
+      <div class="flagship__inner">
+        <div class="flagship__header reveal" data-reveal>
+          <span class="flagship__label">MAIN PROJECT // SAAS PLATFORM</span>
+          <h2 class="flagship__title flagship__title--huge">
+            <span>CLINICFLO</span>
+            <span class="flagship__title--gold">AI</span>
+          </h2>
+          <p class="flagship__tagline">AI-Powered Healthcare Management SaaS Platform</p>
+        </div>
+        <div class="flagship__content reveal" data-reveal>
+          <div class="flagship__info">
+            <p class="flagship__desc">A comprehensive SaaS application revolutionizing healthcare clinic management with AI-powered features. ClinicFlo AI streamlines patient management, appointment scheduling, medical records, billing, and clinical workflows — all enhanced with intelligent automation and AI-driven insights.</p>
+            <div class="clinicflo__features">
+              <div class="clinicflo__feature">
+                <span class="clinicflo__feature-num">01</span>
+                <div>
+                  <strong>AI-Powered Diagnostics</strong>
+                  <p>Intelligent symptom analysis and diagnostic suggestion pipelines.</p>
+                </div>
+              </div>
+              <div class="clinicflo__feature">
+                <span class="clinicflo__feature-num">02</span>
+                <div>
+                  <strong>Smart Scheduling Engine</strong>
+                  <p>Predictive interval-based slot allocation reducing patient wait times.</p>
+                </div>
+              </div>
+              <div class="clinicflo__feature">
+                <span class="clinicflo__feature-num">03</span>
+                <div>
+                  <strong>Analytics Dashboard</strong>
+                  <p>Real-time clinic performance metrics and operational analytics.</p>
+                </div>
+              </div>
+              <div class="clinicflo__feature">
+                <span class="clinicflo__feature-num">04</span>
+                <div>
+                  <strong>Secure Patient Portal</strong>
+                  <p>HIPAA-compliant encrypted data management and role-based access.</p>
+                </div>
+              </div>
+            </div>
+            <div class="flagship__tags">
+              <span class="tag">NEXT.JS</span>
+              <span class="tag">REACT</span>
+              <span class="tag">NODE.JS</span>
+              <span class="tag">MONGODB</span>
+              <span class="tag">AI / ML</span>
+              <span class="tag">TAILWIND CSS</span>
+              <span class="tag">REST API</span>
+              <span class="tag">JWT AUTH</span>
+            </div>
+            <div class="flagship__links">
+              <a href="project.html?id=clinicflo-ai#clinicflo-ai" onclick="openProject('clinicflo-ai')" class="btn btn--accent">VIEW FULL CASE STUDY <span class="btn__arrow">→</span></a>
+            </div>
+          </div>
+          <div class="clinicflo__architecture">
+            <h3 class="evolution__title">SYSTEM ARCHITECTURE</h3>
+            <div class="architecture__diagram">
+              <div class="arch__layer">
+                <span class="arch__label">FRONTEND LAYER</span>
+                <div class="arch__items"><span>Next.js</span><span>React</span><span>Tailwind</span></div>
+              </div>
+              <div class="arch__connector">↓</div>
+              <div class="arch__layer">
+                <span class="arch__label">API GATEWAY</span>
+                <div class="arch__items"><span>Node.js</span><span>Express</span><span>JWT</span></div>
+              </div>
+              <div class="arch__connector">↓</div>
+              <div class="arch__layer">
+                <span class="arch__label">AI INFERENCE</span>
+                <div class="arch__items"><span>NLP Models</span><span>Analytics</span></div>
+              </div>
+              <div class="arch__connector">↓</div>
+              <div class="arch__layer arch__layer--active">
+                <span class="arch__label">DATABASE &amp; CACHE</span>
+                <div class="arch__items"><span>MongoDB</span><span>Redis</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ SMART ENERGY PROJECT ═══════════════════ -->
+    <section class="flagship flagship--secondary">
+      <div class="flagship__inner">
+        <div class="flagship__header reveal" data-reveal>
+          <span class="flagship__label">PROJECT 02 // DEVOPS SHOWCASE</span>
+          <h2 class="flagship__title">
+            <span>SMART ENERGY</span>
+            <span>CONSUMPTION ANALYZER</span>
+          </h2>
+        </div>
+        <div class="flagship__content reveal" data-reveal>
+          <div class="flagship__info">
+            <p class="flagship__desc">A comprehensive energy consumption analysis application with full DevOps pipeline — from application to containerization, CI/CD, orchestration, and monitoring.</p>
+            <div class="flagship__tags">
+              <span class="tag">PHP</span><span class="tag">MYSQL</span><span class="tag">DOCKER</span><span class="tag">GITHUB ACTIONS</span><span class="tag">KUBERNETES</span><span class="tag">PROMETHEUS</span><span class="tag">GRAFANA</span>
+            </div>
+            <div class="flagship__links">
+              <a href="project.html?id=smart-energy#smart-energy" onclick="openProject('smart-energy')" class="btn btn--primary">VIEW FULL CASE STUDY <span class="btn__arrow">→</span></a>
+            </div>
+          </div>
+          <div class="flagship__evolution">
+            <h3 class="evolution__title">PROJECT EVOLUTION</h3>
+            <div class="evolution__timeline">
+              <div class="evolution__step" data-step="1"><span class="evolution__number">01</span><span class="evolution__name">APPLICATION</span><span class="evolution__detail">PHP + MySQL core</span></div>
+              <div class="evolution__connector"></div>
+              <div class="evolution__step" data-step="2"><span class="evolution__number">02</span><span class="evolution__name">DOCKERIZED</span><span class="evolution__detail">Container orchestration</span></div>
+              <div class="evolution__connector"></div>
+              <div class="evolution__step" data-step="3"><span class="evolution__number">03</span><span class="evolution__name">CI/CD</span><span class="evolution__detail">GitHub Actions pipeline</span></div>
+              <div class="evolution__connector"></div>
+              <div class="evolution__step" data-step="4"><span class="evolution__number">04</span><span class="evolution__name">KUBERNETES</span><span class="evolution__detail">Pods &amp; node deployment</span></div>
+              <div class="evolution__connector"></div>
+              <div class="evolution__step" data-step="5"><span class="evolution__number">05</span><span class="evolution__name">MONITORING</span><span class="evolution__detail">Prometheus + Grafana</span></div>
+            </div>
+            <p class="evolution__statement">The project didn't stop at "it works." It evolved into an engineered system.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ OTHER PROJECTS ═══════════════════ -->
+    <section class="projects">
+      <div class="projects__inner">
+        <div class="projects__header reveal" data-reveal>
+          <span class="section__label">CASE FILES</span>
+          <h2 class="section__title">ENGINEERING REPERTORY</h2>
+        </div>
+        <div class="projects__grid">
+          <a href="project.html?id=california-fish-grill#california-fish-grill" onclick="openProject('california-fish-grill')" class="project-card reveal" data-reveal data-cursor="VIEW">
+            <div class="project-card__header"><span class="project-card__num">03 // CASE FILE</span></div>
+            <h3 class="project-card__title">CALIFORNIA<br>FISH GRILL</h3>
+            <p class="project-card__type">FULL STACK WEB APPLICATION</p>
+            <p class="project-card__desc">Interactive menu, dietary filters, multistep checkout, real-time order tracking, email-OTP auth, reservation system.</p>
+            <div class="project-card__tags"><span>React</span><span>Node.js</span><span>MongoDB</span><span>Tailwind CSS</span></div>
+            <div class="project-card__footer"><span class="project-card__link">OPEN CASE <span>→</span></span></div>
+          </a>
+          <a href="project.html?id=jarvis#jarvis" onclick="openProject('jarvis')" class="project-card project-card--olive reveal" data-reveal data-cursor="VIEW">
+            <div class="project-card__header"><span class="project-card__num">04 // CASE FILE</span></div>
+            <h3 class="project-card__title">JARVIS</h3>
+            <p class="project-card__type">AI // AUTOMATION PROJECT</p>
+            <p class="project-card__desc">AI-powered personal assistant for automating tasks, voice commands, and intelligent workflow processing.</p>
+            <div class="project-card__tags"><span>Python</span><span>AI</span><span>Automation</span></div>
+            <div class="project-card__footer"><span class="project-card__link">OPEN CASE <span>→</span></span></div>
+          </a>
+          <a href="project.html?id=ai-email-responder#ai-email-responder" onclick="openProject('ai-email-responder')" class="project-card reveal" data-reveal data-cursor="VIEW">
+            <div class="project-card__header"><span class="project-card__num">05 // CASE FILE</span></div>
+            <h3 class="project-card__title">AI EMAIL<br>RESPONDER</h3>
+            <p class="project-card__type">AI AUTOMATION SYSTEM</p>
+            <p class="project-card__desc">Intelligent email automation system for generating context-aware responses and inbox categorization using AI.</p>
+            <div class="project-card__tags"><span>Python</span><span>AI</span><span>API</span></div>
+            <div class="project-card__footer"><span class="project-card__link">OPEN CASE <span>→</span></span></div>
+          </a>
+          <a href="project.html?id=gui-hospital#gui-hospital" onclick="openProject('gui-hospital')" class="project-card project-card--forest reveal" data-reveal data-cursor="VIEW">
+            <div class="project-card__header"><span class="project-card__num">06 // CASE FILE</span></div>
+            <h3 class="project-card__title">GUI HOSPITAL<br>MANAGEMENT</h3>
+            <p class="project-card__type">DESKTOP APPLICATION</p>
+            <p class="project-card__desc">Desktop app for patient registration, billing, appointment scheduling with a polished JavaFX GUI.</p>
+            <div class="project-card__tags"><span>Java</span><span>JavaFX</span><span>CSS</span></div>
+            <div class="project-card__footer"><span class="project-card__link">OPEN CASE <span>→</span></span></div>
+          </a>
+          <a href="project.html?id=advanced-hospital#advanced-hospital" onclick="openProject('advanced-hospital')" class="project-card project-card--olive reveal" data-reveal data-cursor="VIEW">
+            <div class="project-card__header"><span class="project-card__num">07 // CASE FILE</span></div>
+            <h3 class="project-card__title">ADVANCED HOSPITAL<br>MANAGEMENT</h3>
+            <p class="project-card__type">CLI-BASED SYSTEM</p>
+            <p class="project-card__desc">CLI-based patient management, emergency queuing, doctor assignment using advanced C++ data structures.</p>
+            <div class="project-card__tags"><span>C++</span><span>Linked Lists</span><span>Queues</span><span>BST</span></div>
+            <div class="project-card__footer"><span class="project-card__link">OPEN CASE <span>→</span></span></div>
+          </a>
+          <a href="project.html?id=ecommerce#ecommerce" onclick="openProject('ecommerce')" class="project-card reveal" data-reveal data-cursor="VIEW">
+            <div class="project-card__header"><span class="project-card__num">08 // CASE FILE</span></div>
+            <h3 class="project-card__title">E-COMMERCE<br>INTERFACES</h3>
+            <p class="project-card__type">RESPONSIVE STOREFRONTS</p>
+            <p class="project-card__desc">Shoe &amp; Gaming store responsive storefronts with cart &amp; checkout functionality and interactive galleries.</p>
+            <div class="project-card__tags"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Tailwind</span></div>
+            <div class="project-card__footer"><span class="project-card__link">OPEN CASE <span>→</span></span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ ABOUT ═══════════════════ -->
+    <section id="about" class="about">
+      <div class="about__bg-image" aria-hidden="true">
+        <img src="architecture-3d.jpg" alt="" loading="lazy">
+      </div>
+      <div class="about__inner">
+        <div class="about__left reveal" data-reveal>
+          <h2 class="about__title"><span>I BUILD</span><span class="about__title--accent">SYSTEMS.</span></h2>
+          <p class="about__subtitle">NOT JUST PAGES.</p>
+        </div>
+        <div class="about__right reveal" data-reveal>
+          <div class="about__bio">
+            <p>BS Software Engineering student at <strong>UET Taxila</strong> (4th semester). Strong in OOP, Data Structures &amp; Algorithms, and full-stack web development. Focused on building production-grade applications with AI automation, DevOps pipelines, and backend systems.</p>
+            <p>Two professional internships in C++ development and front-end web development. Driven by the belief that software should be engineered, not just coded.</p>
+          </div>
+          <div class="about__education">
+            <div class="edu__label">ACADEMIC PROFILE</div>
+            <div class="edu__school">
+              <span class="edu__date">2024 — PRESENT</span>
+              <h4 class="edu__name">UET TAXILA</h4>
+              <p class="edu__degree">BS Software Engineering</p>
+              <p class="edu__cgpa">CGPA: <strong>3.3 / 4.0</strong></p>
+            </div>
+            <div class="edu__courses">
+              <span class="edu__label">COURSEWORK</span>
+              <div class="edu__pills">
+                <span>DSA</span>
+                <span>OOP</span>
+                <span>CP</span>
+                <span>DBS</span>
+                <span>OS</span>
+                <span>SDA</span>
+                <span>SRE</span>
+                <span>SEF</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ EXPERIENCE ═══════════════════ -->
+    <section id="experience" class="experience">
+      <div class="experience__bg-image" aria-hidden="true">
+        <img src="experience-3d.jpg" alt="" loading="lazy">
+      </div>
+      <div class="experience__inner">
+        <div class="experience__header reveal" data-reveal>
+          <span class="section__label">CAREER PATH</span>
+          <h2 class="section__title">EXPERIENCE</h2>
+        </div>
+        <div class="timeline">
+          <div class="timeline__line"></div>
+          <div class="timeline__item reveal" data-reveal>
+            <div class="timeline__marker"></div>
+            <div class="timeline__card">
+              <span class="timeline__date">FEB 2026 — MAR 2026</span>
+              <h3 class="timeline__role">C++ Developer Intern</h3>
+              <h4 class="timeline__company">CODEALPHA</h4>
+              <p class="timeline__desc">Optimized C++ programs, applied DSA (Linked Lists, Trees, Graphs), Git collaboration in a professional development environment.</p>
+              <div class="timeline__tech"><span>C++</span><span>Data Structures</span><span>Linked Lists</span><span>Trees</span><span>Graphs</span><span>Git</span></div>
+            </div>
+          </div>
+          <div class="timeline__item reveal" data-reveal>
+            <div class="timeline__marker"></div>
+            <div class="timeline__card">
+              <span class="timeline__date">JUL 2025 — AUG 2025</span>
+              <h3 class="timeline__role">Web Developer Intern</h3>
+              <h4 class="timeline__company">BODEVS SOFTWARE HOUSE</h4>
+              <p class="timeline__desc">Responsive front-end development with HTML5/CSS3/Tailwind, JavaScript interactivity, cross-browser debugging and optimization.</p>
+              <div class="timeline__tech"><span>HTML5</span><span>CSS3</span><span>Tailwind CSS</span><span>JavaScript</span><span>Git</span><span>GitHub</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ TECH STACK ═══════════════════ -->
+    <section id="stack" class="stack">
+      <div class="stack__inner">
+        <div class="stack__header reveal" data-reveal>
+          <span class="section__label">ENGINEERING TOOLKIT</span>
+          <h2 class="section__title">TECH STACK</h2>
+        </div>
+        <div class="stack__grid">
+          <div class="stack__group reveal" data-reveal><h3 class="stack__category">LANGUAGES</h3><div class="stack__items"><span>C++</span><span>Java</span><span>Python</span><span>JavaScript</span></div></div>
+          <div class="stack__group reveal" data-reveal><h3 class="stack__category">FRONTEND</h3><div class="stack__items"><span>React</span><span>Next.js</span><span>HTML5</span><span>CSS3</span><span>Tailwind CSS</span></div></div>
+          <div class="stack__group reveal" data-reveal><h3 class="stack__category">BACKEND &amp; DATABASE</h3><div class="stack__items"><span>Node.js</span><span>PHP</span><span>MySQL</span><span>MongoDB</span></div></div>
+          <div class="stack__group reveal" data-reveal><h3 class="stack__category">DEVOPS</h3><div class="stack__items"><span>Docker</span><span>GitHub Actions</span><span>Kubernetes</span><span>Prometheus</span><span>Grafana</span></div></div>
+          <div class="stack__group reveal" data-reveal><h3 class="stack__category">ENGINEERING</h3><div class="stack__items"><span>OOP</span><span>DSA</span><span>REST APIs</span><span>SDLC</span></div></div>
+          <div class="stack__group reveal" data-reveal><h3 class="stack__category">TOOLS</h3><div class="stack__items"><span>Git</span><span>GitHub</span><span>VS Code</span><span>IntelliJ IDEA</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ ACHIEVEMENTS ═══════════════════ -->
+    <section class="achievements">
+      <div class="achievements__inner">
+        <div class="achievements__header reveal" data-reveal><span class="section__label">HONORS &amp; RECOGNITION</span><h2 class="section__title">ACHIEVEMENTS</h2></div>
+        <div class="achievements__grid">
+          <div class="achievement reveal" data-reveal><span class="achievement__badge-tag">01</span><div class="achievement__info"><span class="achievement__num">HONOR 01</span><h3 class="achievement__name">CM HONHAAR SCHOLARSHIP</h3><p class="achievement__detail">Recipient</p></div></div>
+          <div class="achievement reveal" data-reveal><span class="achievement__badge-tag">02</span><div class="achievement__info"><span class="achievement__num">HONOR 02</span><h3 class="achievement__name">CM LAPTOP SCHEME</h3><p class="achievement__detail">Awardee</p></div></div>
+          <div class="achievement reveal" data-reveal><span class="achievement__badge-tag">03</span><div class="achievement__info"><span class="achievement__num">HONOR 03</span><h3 class="achievement__name">HACKXILA COMPETITION</h3><p class="achievement__detail">Runner-up</p></div></div>
+          <div class="achievement reveal" data-reveal><span class="achievement__badge-tag">04</span><div class="achievement__info"><span class="achievement__num">HONOR 04</span><h3 class="achievement__name">SOFTDESK SOCIETY</h3><p class="achievement__detail">Executive Member, IT Team</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ CERTIFICATIONS ═══════════════════ -->
+    <section class="certifications">
+      <div class="certifications__inner">
+        <div class="certifications__header reveal" data-reveal><span class="section__label">VERIFIED CREDENTIAL</span><h2 class="section__title">CERTIFICATIONS</h2></div>
+        <div class="cert reveal" data-reveal>
+          <div class="cert__badge">
+            <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--gold);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="cert__info">
+            <h3 class="cert__title">GOOGLE CYBERSECURITY SPECIALIZATION</h3>
+            <p class="cert__provider">Coursera</p>
+            <div class="cert__modules"><span>Foundations of Cybersecurity</span><span>Connect and Protect: Networks and Network Security</span><span>Play It Safe: Manage Security Risks</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ CONTACT ═══════════════════ -->
+    <section id="contact" class="contact">
+      <div class="contact__inner">
+        <div class="contact__content reveal" data-reveal>
+          <h2 class="contact__title"><span>LET'S BUILD</span><span>SOMETHING.</span></h2>
+          <p class="contact__subtitle">Have an idea, project, or problem worth solving?</p>
+          <div class="contact__links">
+            <a href="mailto:siddiquiu303@gmail.com" class="btn btn--contact">EMAIL ME <span class="btn__arrow">→</span></a>
+            <a href="https://github.com/Usman22Siddiqui" target="_blank" rel="noopener" class="btn btn--contact-outline">GITHUB <span class="btn__arrow">↗</span></a>
+            <a href="https://linkedin.com/in/usman-siddiqui-07708a380" target="_blank" rel="noopener" class="btn btn--contact-outline">LINKEDIN <span class="btn__arrow">↗</span></a>
+          </div>
+          <div class="contact__info">
+            <p><span class="contact__info-label">EMAIL</span> siddiquiu303@gmail.com</p>
+            <p><span class="contact__info-label">PHONE</span> +92 329 2968887</p>
+            <p><span class="contact__info-label">LOCATION</span> Rawalpindi, Pakistan</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">USMAN<span class="footer__dot">.</span>SYS</div>
+      <p class="footer__tagline">SOFTWARE ENGINEER<br>AI AUTOMATION · DEVOPS · FULL STACK</p>
+      <div class="footer__social">
+        <a href="https://github.com/Usman22Siddiqui" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+        <a href="https://linkedin.com/in/usman-siddiqui-07708a380" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="mailto:siddiquiu303@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+      </div>
+      <p class="footer__copy">© 2026 MUHAMMAD USMAN SIDDIQUI</p>
+    </div>
+  </footer>
+
+  <script>
+    function openProject(id) {
+      try {
+        localStorage.setItem('active_project', id);
+      } catch(e) {}
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
