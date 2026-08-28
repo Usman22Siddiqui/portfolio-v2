@@ -4,10 +4,17 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
+  initCustomCursor();
   renderProjectDetail();
 
-  window.addEventListener('hashchange', renderProjectDetail);
-  window.addEventListener('popstate', renderProjectDetail);
+  window.addEventListener('hashchange', () => {
+    renderProjectDetail();
+    bindCursorHoverTargets();
+  });
+  window.addEventListener('popstate', () => {
+    renderProjectDetail();
+    bindCursorHoverTargets();
+  });
 });
 
 function initNavbar() {
@@ -183,6 +190,7 @@ function renderProjectDetail() {
   `;
 
   window.scrollTo(0, 0);
+  bindCursorHoverTargets();
 }
 
 function navigateToProject(event, id) {
@@ -190,4 +198,88 @@ function navigateToProject(event, id) {
   try { localStorage.setItem('active_project', id); } catch(e) {}
   history.pushState(null, '', `project.html?id=${id}#${id}`);
   renderProjectDetail();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CUSTOM CURSOR ENGINE
+   ═══════════════════════════════════════════════════════════ */
+function initCustomCursor() {
+  const cursor = document.getElementById('cursor');
+  if (!cursor) return;
+
+  if ('ontouchstart' in window && window.innerWidth <= 768) {
+    cursor.style.display = 'none';
+    return;
+  }
+
+  let mouseX = -100, mouseY = -100;
+  let ringX = -100, ringY = -100;
+  let isMoving = false;
+
+  const dot = cursor.querySelector('.cursor__dot');
+  const ring = cursor.querySelector('.cursor__ring');
+  const label = cursor.querySelector('.cursor__label');
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    if (!isMoving) {
+      isMoving = true;
+      ringX = mouseX;
+      ringY = mouseY;
+      document.body.classList.add('cursor-active');
+    }
+
+    if (dot) {
+      dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+    }
+  }, { passive: true });
+
+  document.addEventListener('mouseleave', () => {
+    cursor.style.opacity = '0';
+  });
+
+  document.addEventListener('mouseenter', () => {
+    if (isMoving) cursor.style.opacity = '1';
+  });
+
+  function renderRing() {
+    if (isMoving && ring) {
+      ringX += (mouseX - ringX) * 0.35;
+      ringY += (mouseY - ringY) * 0.35;
+      ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+      if (label) {
+        label.style.transform = `translate3d(${ringX}px, ${ringY + 24}px, 0) translateX(-50%)`;
+      }
+    }
+    requestAnimationFrame(renderRing);
+  }
+  renderRing();
+
+  bindCursorHoverTargets();
+}
+
+function bindCursorHoverTargets() {
+  const cursor = document.getElementById('cursor');
+  if (!cursor) return;
+  const cursorLabel = cursor.querySelector('.cursor__label');
+  const hoverTargets = document.querySelectorAll('a, button, [data-cursor], .project-card, .btn');
+
+  hoverTargets.forEach(target => {
+    target.addEventListener('mouseenter', () => {
+      cursor.classList.add('cursor--hover');
+      const labelText = target.getAttribute('data-cursor');
+      if (labelText && cursorLabel) {
+        cursorLabel.textContent = labelText;
+      } else if (cursorLabel) {
+        cursorLabel.textContent = target.tagName === 'A' ? 'OPEN' : '';
+      }
+    });
+
+    target.addEventListener('mouseleave', () => {
+      cursor.classList.remove('cursor--hover');
+      if (cursorLabel) cursorLabel.textContent = '';
+    });
+  });
 }

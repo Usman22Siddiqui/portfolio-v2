@@ -217,70 +217,98 @@ button {
 /* ═══════════════════════════════════════════════════════════
    CUSTOM CURSOR
    ═══════════════════════════════════════════════════════════ */
-.custom-cursor {
-  display: none;
+.custom-cursor,
+.custom-cursor * {
+  pointer-events: none !important;
+  user-select: none;
 }
 
-@media (pointer: fine) and (hover: hover) {
-  .custom-cursor {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10000;
-    pointer-events: none;
-    mix-blend-mode: difference;
-  }
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+  pointer-events: none !important;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
 
-  .cursor__dot {
-    width: 6px;
-    height: 6px;
-    background: var(--cream);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s, background 0.2s;
-  }
+body.cursor-active .custom-cursor {
+  opacity: 1;
+}
 
-  .cursor__ring {
-    position: absolute;
-    top: -14px;
-    left: -14px;
-    width: 34px;
-    height: 34px;
-    border: 1.5px solid rgba(254, 250, 224, 0.4);
-    border-radius: 50%;
-    transition: width 0.3s, height 0.3s, top 0.3s, left 0.3s, border-color 0.3s;
-  }
+body.cursor-active,
+body.cursor-active a,
+body.cursor-active button,
+body.cursor-active input,
+body.cursor-active [data-cursor] {
+  cursor: none !important;
+}
 
-  .cursor__label {
-    position: absolute;
-    top: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    color: var(--cream);
-    white-space: nowrap;
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
+.cursor__dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  border: 1.5px solid var(--forest);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(221, 161, 94, 0.9);
+  pointer-events: none !important;
+  will-change: transform;
+}
 
-  .custom-cursor.cursor--hover .cursor__ring {
-    width: 56px;
-    height: 56px;
-    top: -25px;
-    left: -25px;
-    border-color: var(--gold);
-  }
+.cursor__ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--olive);
+  background: rgba(96, 108, 56, 0.08);
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(40, 54, 24, 0.15);
+  pointer-events: none !important;
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease,
+              background 0.25s ease;
+  will-change: transform, width, height;
+}
 
-  .custom-cursor.cursor--hover .cursor__label {
-    opacity: 1;
-  }
+.cursor__label {
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  background: var(--forest);
+  color: var(--cream);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--gold);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none !important;
+  transition: opacity 0.2s ease;
+  will-change: transform;
+}
 
-  body:has(.custom-cursor) * {
-    cursor: none !important;
-  }
+.custom-cursor.cursor--hover .cursor__ring {
+  width: 54px;
+  height: 54px;
+  border-color: var(--gold);
+  background: rgba(221, 161, 94, 0.16);
+  box-shadow: 0 0 20px rgba(221, 161, 94, 0.4);
+}
+
+.custom-cursor.cursor--hover .cursor__label {
+  opacity: 1;
 }
 
 /* ═══════════════════════════════════════════════════════════
