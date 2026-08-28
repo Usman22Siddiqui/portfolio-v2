@@ -227,23 +227,19 @@ button {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 0;
+  height: 0;
   z-index: 999999;
   pointer-events: none !important;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-body.cursor-active .custom-cursor {
-  opacity: 1;
+  user-select: none;
 }
 
 body.cursor-active,
 body.cursor-active a,
 body.cursor-active button,
 body.cursor-active input,
-body.cursor-active [data-cursor] {
+body.cursor-active [data-cursor],
+body.cursor-active .project-card {
   cursor: none !important;
 }
 

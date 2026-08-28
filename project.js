@@ -207,7 +207,12 @@ function initCustomCursor() {
   const cursor = document.getElementById('cursor');
   if (!cursor) return;
 
-  if ('ontouchstart' in window && window.innerWidth <= 768) {
+  const dot = cursor.querySelector('.cursor__dot');
+  const ring = cursor.querySelector('.cursor__ring');
+  const label = cursor.querySelector('.cursor__label');
+  if (!dot || !ring) return;
+
+  if (window.innerWidth <= 768 && ('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
     cursor.style.display = 'none';
     return;
   }
@@ -216,13 +221,9 @@ function initCustomCursor() {
   let ringX = -100, ringY = -100;
   let isMoving = false;
 
-  const dot = cursor.querySelector('.cursor__dot');
-  const ring = cursor.querySelector('.cursor__ring');
-  const label = cursor.querySelector('.cursor__label');
-
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
+  function updatePosition(clientX, clientY) {
+    mouseX = clientX;
+    mouseY = clientY;
 
     if (!isMoving) {
       isMoving = true;
@@ -231,21 +232,29 @@ function initCustomCursor() {
       document.body.classList.add('cursor-active');
     }
 
-    if (dot) {
-      dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+    dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+  }
+
+  window.addEventListener('pointermove', (e) => {
+    if (e.pointerType === 'mouse' || e.pointerType === 'pen' || !e.pointerType) {
+      updatePosition(e.clientX, e.clientY);
     }
   }, { passive: true });
 
+  window.addEventListener('mousemove', (e) => {
+    updatePosition(e.clientX, e.clientY);
+  }, { passive: true });
+
   document.addEventListener('mouseleave', () => {
-    cursor.style.opacity = '0';
+    document.body.classList.remove('cursor-active');
   });
 
   document.addEventListener('mouseenter', () => {
-    if (isMoving) cursor.style.opacity = '1';
+    if (isMoving) document.body.classList.add('cursor-active');
   });
 
   function renderRing() {
-    if (isMoving && ring) {
+    if (isMoving) {
       ringX += (mouseX - ringX) * 0.35;
       ringY += (mouseY - ringY) * 0.35;
       ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
@@ -255,7 +264,7 @@ function initCustomCursor() {
     }
     requestAnimationFrame(renderRing);
   }
-  renderRing();
+  requestAnimationFrame(renderRing);
 
   bindCursorHoverTargets();
 }
